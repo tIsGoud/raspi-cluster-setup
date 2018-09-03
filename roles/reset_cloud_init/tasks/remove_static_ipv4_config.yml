@@ -1,0 +1,15 @@
+---
+
+# Remove the IPv4 configuration file
+# The following file needs to be removed:
+# '/etc/dhcpcd.conf'
+
+- name: Remove the static IPv4 configuration file
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/dhcpcd.conf
+  notify: reboot host
+
+...

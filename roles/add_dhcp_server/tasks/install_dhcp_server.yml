@@ -1,0 +1,15 @@
+---
+
+# Install DHCP-service
+# Install but do not start the service, we want to change the configuration before starting it
+
+- name: Install the package "isc-dhcp-server"
+  apt:
+    name: isc-dhcp-server
+    state: present
+    purge: no
+  environment:
+    # do not start at the end of install
+    RUNLEVEL: 1
+
+...

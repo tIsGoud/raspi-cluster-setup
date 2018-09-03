@@ -1,0 +1,19 @@
+---
+
+- name: Get the IP-address from the running Raspberry Pi devices
+  shell: arp -na | grep b8:27:eb | awk '{print $2}' | sed -e 's/^.//' -e 's/.$//'
+  register: arp_result
+#  changed_when: false
+
+- debug:
+    msg: "{{ arp_result.stdout_lines }}"
+  when:
+    - debug
+
+- name: Create dynamic inventory group 'raspi' with found Raspi devices
+  add_host:
+    name: "{{ item }}"
+    groups: raspi
+  loop: "{{ arp_result.stdout_lines }}"
+
+...

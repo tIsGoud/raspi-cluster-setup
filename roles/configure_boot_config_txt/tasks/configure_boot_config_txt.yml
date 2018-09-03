@@ -1,0 +1,12 @@
+---
+
+# Configure 'boot/config.txt' file based on the settings in 'group_vars/all'
+# Mainly used to enable or disable Wi-Fi
+
+- name: Configure file '/boot/config.txt'
+  template:
+    src: templates/config_txt.j2
+    dest: /boot/config.txt
+    backup: no
+
+...

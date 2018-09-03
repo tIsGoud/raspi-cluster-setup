@@ -1,0 +1,9 @@
+---
+
+# Configure the "boot/config.txt" file
+# Bluetooth is disabled by default but Wi-Fi is configured in 'group_vars/all'
+
+- import_tasks: configure_boot_config_txt.yml
+- import_tasks: display_boot_config_txt.yml
+
+...

@@ -1,0 +1,9 @@
+---
+
+# Configure the "boot/meta-data" file
+# Only the name of the cloud-init instance is set in the 'meta-data' file
+
+- import_tasks: configure_meta_data.yml
+- import_tasks: display_meta_data.yml
+
+...

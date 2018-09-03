@@ -1,0 +1,15 @@
+---
+
+# Get gateway IP-address
+
+- name: Get the gateway IP-address from the eth0 interface
+  shell: "ip r | grep default | awk '{print $3}'"
+  register: gateway_address
+  changed_when: false
+
+- name: Display gateway address
+  debug:
+    msg: "Gateway IP-address: {{ gateway_address.stdout }}"
+  when: debug
+
+...

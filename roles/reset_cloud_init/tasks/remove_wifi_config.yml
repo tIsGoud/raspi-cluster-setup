@@ -1,0 +1,15 @@
+---
+
+# Remove the Wi-Fi configuration files
+# Two files need to be removed:
+# '/etc/network/interfaces.d/wlan0' and '/etc/wpa_supplicant/wpa_supplicant.conf'
+
+- name: Remove the Wi-Fi configuration files
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/network/interfaces.d/wlan0
+    - /etc/wpa_supplicant/wpa_supplicant.conf
+  notify: reboot host
+...

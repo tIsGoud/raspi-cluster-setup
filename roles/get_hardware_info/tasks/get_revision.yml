@@ -1,0 +1,13 @@
+---
+
+# Get revision from /proc/cpuinfo
+- name: Get the revision
+  command: awk '/Revision/{print $3}' /proc/cpuinfo
+  register: revision
+
+# Debug revision
+- name: Display revision
+  debug:
+    msg: "Revision = {{ revision.stdout }}"
+
+...

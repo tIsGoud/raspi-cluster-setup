@@ -1,0 +1,7 @@
+---
+
+# Create dynamic inventory based on 'arp -na' and the hardware prefix 'b8:27:eb'
+
+- import_tasks: create_raspi_inventory.yml
+
+...

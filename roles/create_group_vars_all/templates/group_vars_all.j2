@@ -1,0 +1,65 @@
+---
+
+# User used for the initial setup, a user with ssh-access to the hosts
+# Configure the initial user in the cloud-init file 'user-data'.
+# Roles: create_flash_config_files, create_dynamic_mapped_inventory,
+#        create_cluster_inventory, configure_boot_user_data
+ansible_user_name: {{ ansible_user_name }}
+ansible_user_gecos: {{ ansible_user_gecos }}
+
+# Locale of the system
+# Role: configure_boot_user_data
+locale: "{{ locale }}"
+
+# Set the timezone
+# Value of 'timezone' must exist in /usr/share/zoneinfo
+# Role: configure_boot_user_data
+timezone: "{{ timezone }}"
+
+# Set the ssh-key(s) for passwordless login, multiple values are supported
+# Role: create_flash_config_files, configure_boot_user_data
+ssh_authorized_keys:
+{% for item in ssh_authorized_keys %}
+  - {{ item }}
+{% endfor %}
+
+# Wi-Fi configuration with DHCP (wlan0)
+# To generate the psk use the command "wpa_passphrase [SSID] [PASSWORD]"
+# A plaintext password can be used in the psk-field but that's not recommended ...
+# Multiple Wi-Fi network configurations are supported, use the priority to define the order.
+# Wi-Fi is enabled or disabled in the 'mac_address_mapping' further below
+# Role: configure_boot_user_data
+wifi_networks:
+{% for item in wifi_networks %}
+  - ssid: {{ item.ssid }}
+    psk: {{ item.psk }}
+    priority: {{ item.priority }}
+
+{% endfor %}
+# Wi-Fi configuration of country setting (wlan0)
+# Role: configure_boot_user_data
+wifi_country: "{{ wifi_country | default('NL', true) }}"
+
+# Mapping of the MAC-addresses to the hostname
+# Change the hostname, networksettings, and cluster-role ('master' or 'node') here
+# Role: create_dynamic_inventory and configure_boot_config_txt and configure_boot_user_data
+mac_address_mapping:
+{% for item in groups['raspi'] %}
+  - mac_address: {{ hostvars[item].mac_address_eth0.stdout }}
+    serial: {{ hostvars[item].serial_number.stdout }}
+    # Wired ethernet uses DHCP by default
+    eth0_ip_v4_static: no
+    eth0_ip_v4_address: {{ hostvars[item].inventory_hostname }}
+    # Wireless (Wi-Fi) is disabled by default
+    wifi_enabled: no
+    host_name: raspi_base
+    cluster_role: node
+
+{% endfor %}
+# Ethernet configuration for static IP-address (eth0)
+# Role: create_cluster_inventory
+gateway: {{ hostvars[groups['raspi'][0]].gateway_address.stdout }}
+# domain_name_servers: Gateway DNS-Watch_NS1 DNS-Watch_NS2
+domain_name_servers: {{ hostvars[groups['raspi'][0]].gateway_address.stdout }} 84.200.69.80 84.200.70.40
+
+...

@@ -1,0 +1,13 @@
+---
+
+# Create the DHCP configuration file
+
+# Install but not start the service
+- import_tasks: install_dhcp_server.yml
+# Add the configuration files
+- import_tasks: create_isc_dhcp_server.yml
+- import_tasks: create_dhcpd_conf.yml
+# Start the service and enable start on boot
+- import_tasks: setup_dhcp_service.yml
+
+...

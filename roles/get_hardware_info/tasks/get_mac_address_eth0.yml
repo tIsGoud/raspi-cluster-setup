@@ -1,0 +1,20 @@
+---
+
+# Get MAC address of the ethernet interface
+# Perform as root => "become: yes":
+# shell: "ifconfig eth0 | grep 'ether' | awk '{print $2}'"
+# Perform as non-root => "become: no":
+# shell: "/sbin/ifconfig eth0 | grep 'ether' | awk '{print $2}'"
+
+- name: Get MAC address from the eth0 interface
+  shell: "/sbin/ifconfig eth0 | grep 'ether' | awk '{print $2}'"
+  register: mac_address_eth0
+  changed_when: false
+  when: debug
+
+- name: Display MAC address of eth0
+  debug:
+    msg: "MAC address of eth0: {{ mac_address_eth0.stdout }}"
+  when: debug
+
+...

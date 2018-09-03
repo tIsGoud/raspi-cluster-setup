@@ -1,0 +1,13 @@
+---
+
+# Read the local inventory ("hosts") file and display it's contents
+
+- name: Display hosts file
+  vars:
+    hosts_file: "{{ lookup('file', 'hosts') }}"
+  debug:
+    msg: "{{ hosts_file }}"
+  when:
+    - debug
+
+...

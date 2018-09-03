@@ -1,0 +1,15 @@
+---
+
+# Machine-id is not a stable id!
+
+# Get machine-id from /etc/machine-id
+- name: Get the machine-id
+  command: cat /etc/machine-id
+  register: machine_id
+
+# Debug machine-id
+- name: Display machine-id
+  debug:
+    msg: "Machine-id = {{ machine_id.stdout }}"
+
+...

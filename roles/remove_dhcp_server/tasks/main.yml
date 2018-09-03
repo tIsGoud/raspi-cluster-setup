@@ -1,0 +1,8 @@
+---
+
+# Remove the DHCP service and configuration
+
+- import_tasks: stop_dhcp_service.yml
+- import_tasks: remove_dhcp_service.yml
+
+...

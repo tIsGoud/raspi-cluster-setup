@@ -1,0 +1,16 @@
+---
+
+# Check Wi-Fi depenency, no Wi-Fi, no forwarding
+
+- name: Get MAC address from the wlan0 interface
+  shell: "/sbin/ifconfig wlan0 | grep 'inet ' | awk '{print $2}'"
+  register: shell_result
+  changed_when: false
+  failed_when: "'error fetching interface information' in shell_result.stderr"
+
+- name: Display IPv4 address of wlan0
+  debug:
+    msg: "IPv4 address of wlan0: {{ shell_result.stdout }}"
+  when: debug
+
+...

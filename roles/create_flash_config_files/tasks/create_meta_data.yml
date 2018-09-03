@@ -1,0 +1,12 @@
+---
+
+# Create the 'flashdir/meta-data' file
+# The created file is used to flash the SD-card.
+
+- name: Create 'flashdir/meta-data' file from template
+  template:
+    src: templates/meta-data.j2
+    dest: "{{ playbook_dir }}/flashdir/meta-data"
+    backup: no
+
+...

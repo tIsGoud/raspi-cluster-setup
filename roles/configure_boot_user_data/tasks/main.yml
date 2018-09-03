@@ -1,0 +1,11 @@
+---
+
+# Configure the 'boot/user-data' file
+# The features configured are: host_name, ssh-authorized keys, locale, time zone,
+# Wi-Fi (enabled or disabled) and static IP-address (enabled or disabled)
+# Features can be set in 'groupvars/all'
+
+- import_tasks: configure_user_data.yml
+- import_tasks: display_user_data.yml
+
+...

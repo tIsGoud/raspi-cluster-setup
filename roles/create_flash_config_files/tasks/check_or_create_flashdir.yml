@@ -1,0 +1,11 @@
+---
+
+# Create the 'flashdir' directory
+# The created directory is used to flash the SD-card.
+
+- name: Create 'flashdir' directory
+  file:
+    path: "{{ playbook_dir }}/flashdir"
+    state: directory
+
+...

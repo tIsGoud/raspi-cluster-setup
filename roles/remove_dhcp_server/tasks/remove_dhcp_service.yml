@@ -1,0 +1,11 @@
+---
+
+# Remove DHCP-service
+
+- name: Remove the package "isc-dhcp-server"
+  apt:
+    name: isc-dhcp-server
+    state: absent
+    purge: yes
+
+...

@@ -1,0 +1,12 @@
+---
+
+# Configure meta-data file, change the 'instance' name
+# Instance-id is defined in 'group-vars'
+
+- name: Configure file "/boot/meta-data" as part of the cloud-init
+  template:
+    src: templates/meta_data.j2
+    dest: /boot/meta-data
+    backup: no
+
+...

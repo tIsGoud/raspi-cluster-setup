@@ -1,0 +1,28 @@
+[local]
+localhost           ansible_connection=local
+
+[cluster-masters]
+{% for item in groups['dynamic'] if (hostvars[item].cluster_role == 'master') %}
+{% if hostvars[item].eth0_ip_v4_static %}
+{{ hostvars[item].host_name }}.local        ansible_host={{ hostvars[item].eth0_ip_v4_address }}
+{% else %}
+{{ hostvars[item].host_name }}.local
+{% endif %}
+{% endfor %}
+
+[cluster-nodes]
+{% for item in groups['dynamic'] if (hostvars[item].cluster_role == 'node') %}
+{% if hostvars[item].eth0_ip_v4_static %}
+{{ hostvars[item].host_name }}.local        ansible_host={{ hostvars[item].eth0_ip_v4_address }}
+{% else %}
+{{ hostvars[item].host_name }}.local
+{% endif %}
+{% endfor %}
+
+[cluster:children]
+cluster-masters
+cluster-nodes
+
+[cluster:vars]
+ansible_connection=ssh
+ansible_user={{ ansible_user_name }}

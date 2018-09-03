@@ -1,0 +1,12 @@
+---
+
+# Write all hostvars to the file 'hostvars.txt' for debugging purposes
+
+- name: Write the hostvars to a file hostvars.txt
+  copy:
+    dest: "hostvars.txt"
+    content: "{{ hostvars | to_nice_yaml(indent=4) }}"
+    backup: no
+  when: debug_to_file
+
+...

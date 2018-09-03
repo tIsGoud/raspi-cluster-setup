@@ -1,0 +1,12 @@
+---
+
+# Create the 'flashdir/user-data' file
+# The created file is used to flash the SD-card.
+
+- name: Create 'flashdir/user-data' file from template
+  template:
+    src: templates/user-data.j2
+    dest: "{{ playbook_dir }}/flashdir/user-data"
+    backup: no
+
+...

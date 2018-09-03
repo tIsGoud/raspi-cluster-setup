@@ -1,0 +1,18 @@
+---
+
+# Display the content of the file '/boot/user-data'
+
+- name: Read user-data file
+  command: cat /boot/user-data
+  register: user_data_file
+  when:
+    - debug
+  changed_when: false
+
+- name: Display user-data file
+  debug:
+    msg: "{{ user_data_file.stdout_lines }}"
+  when:
+    - debug
+
+...

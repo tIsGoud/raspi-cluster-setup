@@ -1,0 +1,36 @@
+---
+
+# Create dynamic inventory based on 'arp -na' and the hardware prefix 'b8:27:eb'
+- name: Create dynamic raspi inventory
+  hosts: localhost
+  vars:
+    debug: yes
+  become: no
+  gather_facts: no
+  roles:
+    - create_raspi_inventory
+  tags: always
+
+# Retrieve the hardware info of the Raspberry Pi devices
+- name: Get hardware information
+  hosts: raspi
+  vars:
+    debug: yes
+  become: no
+  gather_facts: no
+  roles:
+    - get_hardware_info
+  tags: get_hardware_info
+
+# Write an initial 'group_vars/all' file
+- name: Create 'group_vars/all'
+  hosts: localhost
+  vars:
+    debug: yes
+  become: no
+  gather_facts: no
+  roles:
+    - create_group_vars_all
+  tags: create_group_vars_all
+
+...

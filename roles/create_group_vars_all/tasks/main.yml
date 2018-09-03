@@ -1,0 +1,7 @@
+---
+
+# Create the 'group_vars/all' file based on a template
+
+- import_tasks: create_group_vars_all.yml
+
+...

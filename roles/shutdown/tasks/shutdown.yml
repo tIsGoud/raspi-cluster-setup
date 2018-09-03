@@ -1,0 +1,10 @@
+---
+
+# Shutdown the device
+- name: Shutdown the device
+  shell: "sleep 2 && shutdown -h now"
+  async: 1
+  poll: 0
+  ignore_errors: true
+
+...

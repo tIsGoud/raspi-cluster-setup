@@ -1,0 +1,11 @@
+---
+
+# Display all hostvars for debugging purposes
+
+- name: Display hostvars
+  debug:
+    msg: "{{ hostvars }}"
+  when:
+    - debug
+
+...

@@ -1,0 +1,12 @@
+---
+
+# Create the 'flashdir/config.txt' file
+# The created file is used to flash the SD-card.
+
+- name: Create 'flashdir/config.txt' file from template
+  template:
+    src: templates/config.txt.j2
+    dest: "{{ playbook_dir }}/flashdir/config.txt"
+    backup: no
+
+...

@@ -1,0 +1,13 @@
+---
+
+# Get serial number from  /proc/cpuinfo
+- name: Get the serial number
+  command: awk '/Serial/{print $3}' /proc/cpuinfo
+  register: serial_number
+
+# Debug serial_number
+- name: Display serial_number
+  debug:
+    msg: "Serial number = {{ serial_number.stdout }}"
+
+...

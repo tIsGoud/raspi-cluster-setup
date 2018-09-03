@@ -1,0 +1,27 @@
+---
+
+# Create dynamic inventory based on mapping file
+# Required variables: "initial_ansible_user" and variables below "mac_address_mapping"
+# are configured in "group_vars/all"
+- name: Create dynamic inventory
+  hosts: localhost
+  vars:
+    debug: no
+  become: no
+  gather_facts: no
+  roles:
+    - create_dynamic_mapped_inventory
+  tags: always
+
+# Shutdown the dynamic hosts
+- name: Shutdown
+  hosts: dynamic
+  vars:
+    debug: no
+  become: yes
+  gather_facts: no
+  roles:
+    - shutdown
+  tags: shutdown
+
+...

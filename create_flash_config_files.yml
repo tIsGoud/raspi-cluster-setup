@@ -1,0 +1,16 @@
+---
+
+# Create the 'flashdir/*' files based on their templates
+# The flashdir directory contains the configuration files to flash the SD-card.
+
+- name: Create flash config files
+  hosts: localhost
+  vars:
+    debug: yes
+  become: no
+  gather_facts: no
+  roles:
+    - create_flash_config_files
+  tags: always
+
+...

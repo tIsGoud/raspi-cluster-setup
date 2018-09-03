@@ -1,0 +1,11 @@
+---
+
+# Create the DHCP configuration file: '/etc/dhcp/dhcpd.conf'
+
+- name: Create the DHCP configuration file '/etc/dhcp/dhcpd.conf'
+  template:
+    src: templates/dhcpd.conf.j2
+    dest: "/etc/dhcp/dhcpd.conf"
+    backup: no
+
+...

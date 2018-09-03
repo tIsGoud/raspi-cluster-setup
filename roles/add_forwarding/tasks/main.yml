@@ -1,0 +1,9 @@
+---
+
+# Add forwarding from eth0 to wlan0 and back
+
+- import_tasks: check_wifi_dependency.yml
+- import_tasks: add_forwarding_in_sysctl.yml
+- import_tasks: add_iptables_rules.yml
+
+...

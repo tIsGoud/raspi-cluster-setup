@@ -1,0 +1,39 @@
+---
+
+# User used for the initial setup, a user with ssh-access to the hosts
+# Configure the initial user in the cloud-init file 'user-data'.
+# Roles: create_flash_config_files, create_dynamic_mapped_inventory,
+#        create_cluster_inventory, configure_boot_user_data
+ansible_user_name: ansible
+ansible_user_gecos: Ansible User
+
+# Locale of the system
+# Role: configure_boot_user_data
+locale: "en_US.UTF-8"
+
+# Set the timezone
+# Value of 'timezone' must exist in /usr/share/zoneinfo
+# Role: configure_boot_user_data
+timezone: "Europe/Amsterdam"
+
+# Set the ssh-key(s) for passwordless login, multiple values are supported
+# Role: create_flash_config_files, configure_boot_user_data
+ssh_authorized_keys:
+  - add your first ssh authorized key(s) here
+  - add your second ssh authorized key(s) here
+
+# Wi-Fi configuration with DHCP (wlan0)
+# To generate the psk use the command "wpa_passphrase [SSID] [PASSWORD]"
+# A plaintext password can be used in the psk-field but that's not recommended ...
+# Multiple Wi-Fi network configurations are supported, use the priority to define the order.
+# Role: configure_boot_user_data
+wifi_networks:
+  - ssid: add your ssid here
+    psk: add your psk here
+    priority: add the network priority here
+
+# Wi-Fi configuration of country setting (wlan0)
+# Role: configure_boot_user_data
+wifi_country: "NL"
+
+...

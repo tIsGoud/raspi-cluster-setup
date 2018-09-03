@@ -1,0 +1,23 @@
+---
+
+# Add iptables rules for forwarding from eth0 to wlan0 and back
+#
+# iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
+# iptables -A FORWARD -i wlan0 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+# iptables -A FORWARD -i eth0 -o wlan0 -j ACCEPT
+
+# Add check for wlan0? => check wlan0 and/or group_vars/all
+
+- name: Add POSTROUTING & MASQUERADE wlan0 to nat table
+  command: iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
+  register: iptable_result
+
+- name: Add iptables rule for forwarding wlan0 to eth0
+  command: iptables -A FORWARD -i wlan0 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+  register: iptable_result
+
+- name: Add iptables rule for forwarding eth0 to wlan0
+  command: iptables -A FORWARD -i eth0 -o wlan0 -j ACCEPT
+  register: iptable_result
+
+...

@@ -1,0 +1,11 @@
+---
+
+# Create the DHCP configuration file: '/etc/default/isc-dhcp-server'
+
+- name: Create the DHCP configuration file '/etc/default/isc-dhcp-server'
+  template:
+    src: templates/isc-dhcp-server.j2
+    dest: "/etc/default/isc-dhcp-server"
+    backup: no
+
+...

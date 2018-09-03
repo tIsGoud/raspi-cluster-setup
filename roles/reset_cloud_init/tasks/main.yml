@@ -1,0 +1,9 @@
+---
+
+# Remove the cloud-init instances and the possible static IPv4 and Wi-Fi configurations
+
+- import_tasks: remove_cloud_init_instances.yml
+- import_tasks: remove_static_ipv4_config.yml
+- import_tasks: remove_wifi_config.yml
+
+...

@@ -1,0 +1,8 @@
+---
+
+# Create the cluster inventory file based on the dynamic inventory based on the mac-addresses defined in 'groupvars/all'
+
+- import_tasks: create_cluster_inventory.yml
+- import_tasks: display_hosts_file.yml
+
+...

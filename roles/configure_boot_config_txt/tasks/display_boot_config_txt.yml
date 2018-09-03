@@ -1,0 +1,18 @@
+---
+
+# Display the content of the file '/boot/config.txt'
+
+- name: Read config.txt file
+  command: cat /boot/config.txt
+  register: config_txt_file
+  when:
+    - debug
+  changed_when: false
+
+- name: Display config.txt file
+  debug:
+    msg: "{{ config_txt_file.stdout_lines }}"
+  when:
+    - debug
+
+...

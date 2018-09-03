@@ -1,0 +1,18 @@
+---
+
+# Display the content of the file '/etc/cloud/templates/hosts.debian.tmpl'
+
+- name: Read hosts.tmpl file
+  command: cat /etc/cloud/templates/hosts.debian.tmpl
+  register: hosts_debian_tmpl_file
+  when:
+    - debug
+  changed_when: false
+
+- name: Display hosts.tmpl file
+  debug:
+    msg: "{{ hosts_debian_tmpl_file.stdout_lines }}"
+  when:
+    - debug
+
+...

@@ -1,0 +1,16 @@
+---
+
+# Ping
+
+- name: Create dynamic inventory
+  hosts: localhost
+  tasks:
+    - name: Ping
+      command: "ping -c 2 {{ item }}.local"
+      loop:
+      - master
+      - node01
+      - node02
+      - node03
+
+...

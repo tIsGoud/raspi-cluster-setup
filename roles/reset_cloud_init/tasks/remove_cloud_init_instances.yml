@@ -1,0 +1,21 @@
+---
+
+# Remove the cloud-init instances
+# Two directories need to be removed:
+# '/var/lib/cloud/instance' and '/var/lib/cloud/instances'
+# Next boot the system will boot as if it is the first cloud-init boot
+
+# Method below generates a warning
+# - name: Reset the cloud-config configuration
+#   command: rm -rf /var/lib/cloud/instance*
+
+- name: Remove the cloud-init instances
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /var/lib/cloud/instance
+    - /var/lib/cloud/instances
+  notify: reboot host
+
+...

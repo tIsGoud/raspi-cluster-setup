@@ -1,0 +1,12 @@
+---
+
+# Create the 'group_vars/all' file
+# The created file is used as the base for the cluster setup
+
+- name: Create 'group_vars/all' file from template
+  template:
+    src: templates/group_vars_all.j2
+    dest: "{{ playbook_dir }}/group_vars/all"
+    backup: yes
+
+...

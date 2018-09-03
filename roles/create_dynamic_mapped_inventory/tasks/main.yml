@@ -1,0 +1,9 @@
+---
+
+# Create dynamic inventory based on mapping file
+
+- import_tasks: map_mac_address.yml
+- import_tasks: create_dynamic_inventory.yml
+- import_tasks: display_mapped_result.yml
+
+...

@@ -1,0 +1,9 @@
+---
+
+# Configure the file "/etc/cloud/templates/hosts.debian.tmpl"
+# The static IPv4 addresses of the cluster members are added to the hosts file.
+
+- import_tasks: configure_hosts_tmpl.yml
+- import_tasks: display_hosts_tmpl.yml
+
+...

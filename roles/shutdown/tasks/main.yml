@@ -1,0 +1,6 @@
+---
+
+# Shutdown
+- import_tasks: shutdown.yml
+
+...

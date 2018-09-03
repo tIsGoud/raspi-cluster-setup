@@ -1,0 +1,11 @@
+---
+
+# Start the DHCP service and enable it to start on boot
+
+- name: Start DHCP service
+  service:
+    name: isc-dhcp-server
+    state: started
+    enabled: yes
+
+...

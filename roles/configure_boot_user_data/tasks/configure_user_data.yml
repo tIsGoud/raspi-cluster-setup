@@ -1,0 +1,18 @@
+---
+
+# Configure the 'boot/user-data' file
+# The following features will be configured based on the settings in 'groupvars/all':
+# - host_name
+# - ssh-authorized keys
+# - locale
+# - time zone
+# - Wi-Fi
+# - Static IP-address
+
+- name: Configure the "/boot/user-data" file as part of the cloud-init
+  template:
+    src: templates/user_data.j2
+    dest: /boot/user-data
+    backup: no
+
+...

@@ -1,0 +1,25 @@
+# Pretends HDMI hotplug signal is asserted so it appears a HDMI display is attached
+hdmi_force_hotplug=1
+
+# disable serial console
+enable_uart=0
+
+# Disable the camera
+start_x=0
+
+# Turn off the red camera LED
+disable_camera_led=1
+
+# Set the GPU memory to the bare minimum
+gpu_mem=16
+
+# Enable audio
+dtparam=audio=on
+
+# Disable bluetooth
+dtoverlay=pi3-disable-bt
+
+# Disable Wi-Fi
+{% if not wifi_enabled %}
+dtoverlay=pi3-disable-wifi
+{% endif %}

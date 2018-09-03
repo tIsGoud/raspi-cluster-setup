@@ -1,0 +1,23 @@
+option domain-name "tisgoud.local";
+option domain-name-servers {{ domain_name_servers.split(' ') | join(', ') }};
+
+# Set up the desired subnet:
+subnet 192.168.178.0 netmask 255.255.255.0 {
+    range 192.168.178.10 192.168.178.20;
+    option subnet-mask 255.255.255.0;
+    option broadcast-address 192.168.178.255;
+    option routers {{ gateway }};
+    #option domain-name-servers home;
+}
+default-lease-time 600;
+max-lease-time 7200;
+# Show that we want to be the only DHCP server in this network:
+authoritative;
+
+# Fixed IP-leases
+{% for item in mac_address_mapping if (item.host_name != inventory_hostname) %}
+host {{ item.host_name }} {
+  hardware ethernet {{ item.mac_address }};
+  fixed-address {{ item.eth0_ip_v4_address }};
+}
+{% endfor %}

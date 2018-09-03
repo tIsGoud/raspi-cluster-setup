@@ -1,0 +1,8 @@
+---
+
+# Remove forwarding eth0 to wlan0
+
+- import_tasks: remove_forwarding_in_sysctl.yml
+- import_tasks: remove_iptables_rules.yml
+
+...

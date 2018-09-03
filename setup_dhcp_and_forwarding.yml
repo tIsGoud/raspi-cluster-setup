@@ -1,0 +1,27 @@
+---
+
+# Add the DHCP server, requires a static IPv4 address
+# - name: Add DHCP server
+#   hosts: master
+#   vars:
+#     debug: yes
+#   become: yes
+#   gather_facts: no
+#   roles:
+#     - add_dhcp_server
+#   tags: add_dhcp_server
+
+# Setup forwarding from eth0 to wlan0 and back
+# Wi-Fi has to be enabled on the master node
+- name: Setup forwarding on the master node
+  hosts: master
+  any_errors_fatal: true
+  vars:
+    debug: yes
+  become: yes
+  gather_facts: no
+  roles:
+    - add_forwarding
+  tags: add_forwarding
+
+...

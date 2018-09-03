@@ -1,0 +1,16 @@
+---
+
+# - name: Display raw mapping_result
+#   debug:
+#     msg: "{{ mapping_result }}"
+#   when: debug
+
+- name: Display mapped_result
+  debug:
+    msg: "{{ item }}"
+  when:
+    - debug
+    - item.rc == 0
+  loop: "{{ mapping_result.results }}"
+
+...

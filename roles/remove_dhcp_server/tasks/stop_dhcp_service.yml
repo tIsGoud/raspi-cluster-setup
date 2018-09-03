@@ -1,0 +1,11 @@
+---
+
+# Stop the DHCP service and make sure it doesn't start at boot
+
+- name: Stop the DHCP service
+  service:
+    name: isc-dhcp-server
+    state: stopped
+    enabled: no
+
+...

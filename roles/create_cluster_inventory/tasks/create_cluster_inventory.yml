@@ -1,0 +1,12 @@
+---
+
+# Create the cluster inventory file ("hosts") based on the found dynamic hosts
+# Only the hosts defined in the file 'group_vars/all' will be used for this inventory
+
+- name: Create cluster inventory ("hosts"-file) from dynamic hosts
+  template:
+    src: templates/hosts.j2
+    dest: "{{ playbook_dir }}/hosts"
+    backup: no
+
+...

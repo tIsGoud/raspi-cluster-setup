@@ -1,0 +1,14 @@
+---
+
+# Configure file "/etc/cloud/templates/hosts.debian.tmpl" 
+# The static IPv4 addresses of the cluster members are added to the hosts file.
+# Changes written to the hosts file will be removed after a reboot due to the setting "manage_etc_hosts:true".
+# Setting this value to false would result in managing the hostname manually.
+
+- name: Configure file "/etc/cloud/templates/hosts.debian.tmpl"
+  template:
+    src: templates/hosts.debian.tmpl.j2
+    dest: /etc/cloud/templates/hosts.debian.tmpl
+    backup: no
+
+...

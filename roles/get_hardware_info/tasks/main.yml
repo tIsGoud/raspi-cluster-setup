@@ -1,0 +1,12 @@
+---
+
+# Retrieve hardware information
+
+ - import_tasks: get_mac_address_eth0.yml
+ - import_tasks: get_serial_number.yml
+ - import_tasks: get_gateway_address.yml
+
+# - import_tasks: get_revision.yml
+# - import_tasks: get_mac_address_wlan0.yml
+
+...

@@ -1,0 +1,43 @@
+---
+
+# Create dynamic inventory based on mapping file
+# Required variables: "initial_ansible_user" and variables below "mac_address_mapping"
+# are configured in "group_vars/all"
+- name: Create dynamic mapped inventory
+  hosts: localhost
+  vars:
+    debug: yes
+  become: no
+  gather_facts: no
+  roles:
+    - create_dynamic_mapped_inventory
+  tags: always
+
+# Create the cluster inventory file ("hosts") based on the found dynamic hosts
+# Only the hosts defined in the file 'group_vars/all' will be used for this inventory
+- name: Create cluster inventory ("hosts"-file) from dynamic mapped hosts
+  hosts: localhost
+  vars:
+    debug: yes
+  become: no
+  gather_facts: no
+  roles:
+    - create_cluster_inventory
+  tags: create_cluster_inventory
+
+# Rewrite cloud-int specific files
+- name: Reset cloud-init
+  hosts: dynamic
+  vars:
+    debug: yes
+  become: yes
+  gather_facts: no
+  roles:
+    - configure_boot_config_txt
+    - configure_boot_meta_data
+    - configure_boot_user_data
+    - configure_etc_cloud_templates_hosts_debian_tmpl
+    - reset_cloud_init
+  tags: cloud_init
+
+...

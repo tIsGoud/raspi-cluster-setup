@@ -1,0 +1,55 @@
+#cloud-config
+# vim: syntax=yaml
+#
+
+# The current version of cloud-init in the Hypriot rpi-64 is 0.7.9
+# When dealing with cloud-init, it is SUPER important to know the version
+# I have wasted many hours creating servers to find out the module I was trying to use wasn't in the cloud-init version I had
+# Documentation: http://cloudinit.readthedocs.io/en/0.7.9/index.html
+
+# Set your hostname here, the manage_etc_hosts will update the hosts file entries as well
+hostname: raspi-base
+# Host-entries have to be added to the file '/etc/cloud/templates/hosts.debian.tmpl'
+manage_etc_hosts: true
+
+# You could modify this for your own user information
+users:
+  - name: pirate
+    gecos: "Hypriot Pirate"
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: users,docker,video,input
+    plain_text_passwd: hypriot_plain_text_password_for_fallback_scenario
+    lock_passwd: false
+    ssh_pwauth: true
+    chpasswd: { expire: false }
+  - name: {{ ansible_user_name | default('ansible', true) }}
+    gecos: {{ ansible_user_gecos | default('Ansible User', true) }}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: users,docker,adm,dialout,audio,plugdev,netdev,video
+    primary-group: users
+    ssh-import-id: None
+    lock_passwd: true
+    ssh-authorized-keys:
+{% for item in ssh_authorized_keys %}
+      - {{ item | default('[please add your ssh authorized key(s) in the file group_vars/all]', true)}}
+{% endfor %}
+
+# Set the locale of the system
+locale: "{{ locale | default('en_US.UTF-8', true) }}"
+
+# Set the timezone
+# Value of 'timezone' must exist in /usr/share/zoneinfo
+timezone: "{{ timezone | default('Europe/Amsterdam', true) }}"
+
+# # Update apt packages on first boot
+# package_update: true
+# package_upgrade: true
+# package_reboot_if_required: true
+package_upgrade: false
+
+# These commands will be ran once on first boot only
+runcmd:
+  # Pickup the hostname changes
+  - 'systemctl restart avahi-daemon'

@@ -1,0 +1,21 @@
+---
+
+# Could not resolve hostname 192.168.178.20\n192.168.178.134: nodename nor servname provided, or not known
+
+- name: Create dynamic inventory with found hosts
+  add_host:
+    #name: "{{ item.stdout }}"
+    name: "{{ item.stdout_lines[0] }}" # When Wi_Fi is enabled two items are found
+    groups: dynamic
+    host_name: "{{ item.item.host_name }}"
+    eth0_ip_v4_static: "{{ item.item.eth0_ip_v4_static }}"
+    eth0_ip_v4_address: "{{ item.item.eth0_ip_v4_address }}"
+    wifi_enabled: "{{ item.item.wifi_enabled }}"
+    cluster_role: "{{ item.item.cluster_role }}"
+    ansible_connection: ssh
+    ansible_ssh_user: "{{ ansible_user_name }}"
+  when: item.rc == 0
+  loop: "{{ mapping_result.results }}"
+  changed_when: false
+
+...

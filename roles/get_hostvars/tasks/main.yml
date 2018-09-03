@@ -1,0 +1,8 @@
+---
+
+# Display and/or write hostvars to file
+
+- import_tasks: display_hostvars.yml
+- import_tasks: write_hostvars_to_file.yml
+
+...

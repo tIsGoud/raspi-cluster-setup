@@ -1,0 +1,26 @@
+---
+
+# Remove forwarding from eth0 to wlan0 and back
+# Wi-Fi has to be enabled on the master node
+- name: Remove forwarding on the master node
+  hosts: master
+  vars:
+    debug: yes
+  become: yes
+  gather_facts: no
+  roles:
+    - remove_forwarding
+  tags: remove_forwarding
+
+# Remove the DHCP server, requires a static IPv4 address
+- name: Remove DHCP server
+  hosts: master
+  vars:
+    debug: yes
+  become: yes
+  gather_facts: no
+  roles:
+    - remove_dhcp_server
+  tags: remove_dhcp_server
+
+...

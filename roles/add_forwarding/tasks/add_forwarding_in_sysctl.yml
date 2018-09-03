@@ -1,0 +1,17 @@
+---
+
+# Set ip forwarding on in /proc and in the sysctl file and reload if necessary
+#
+# Different ways to implement:
+# CLI: sudo sysctl -w net.ipv4.ip_forward=1
+# EDIT: /etc/sysctl.conf => set net.ipv4.ip_forward=1
+
+- name: Set ip forwarding on in /proc and in the sysctl file
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+...
