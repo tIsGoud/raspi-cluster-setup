@@ -1,8 +1,9 @@
 # Raspi Cluster automation with Ansible
-![Raspi-stack](img/Raspi-stack.png)
 
 The goal of this project is to create a basic Raspberry Pi cluster with minimal manual intervention.
 If you want to create a Raspberry Pi cluster manually there are plenty of sites that tell you how in much detail. This project focusses on the automation part, the choices made along the way and the lessons learned.
+
+![Raspi-stack](img/raspi-stack.png)
 
 Of course there are still manual steps but I tried to keep them to a bare minimum.
 
@@ -86,7 +87,7 @@ Based on how the gateway is connected I see four network options where each has 
 
 ### Wired
 Very convenient setup when you use the cluster at home.
-![](img/networking_wired.png)
+!["Wired"](img/networking_wired.png)
 
 ### Dual-homed Raspi
 In this setup, Wi-Fi is enabled on the master-node and forwarding is set from eth0 to wlan0 and back.
@@ -98,13 +99,13 @@ You can configure multiple Wi-Fi networks. For example:
 - Wi-Fi at work
 - Wi-Fi hotspot on your mobile phone
 
-![](img/networking_dual-homed_raspi.png)
+!["Dual-homed Raspi"](img/networking_dual-homed_raspi.png)
 
 ### Mobile router
 With an upgraded (OpenWRT) mobile router like the Nexx WT3020 you use the router as gateway to the outside world. Changes to Wi-Fi or fixed IP-addresses have to be configured on the router.
 
-![](img/networking_mobile_router.png)
+!["Mobile router"](img/networking_mobile_router.png)
 
 ### Laptop with internet-sharing
 Most laptops can be used for internet-sharing. The laptop serves as gateway and DHCP server. Setting fixed IP-addresses can be a challenge.
-![](img/networking_laptop_with_internet_sharing.png)
+!["Laptop with internet-sharing"](img/networking_laptop_with_internet_sharing.png)
