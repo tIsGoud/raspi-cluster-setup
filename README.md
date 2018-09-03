@@ -1,5 +1,5 @@
 # Raspi Cluster automation with Ansible
-![Raspi-stack](img/raspi-stack.png)
+![Raspi-stack](img/Raspi-stack.png)
 
 The goal of this project is to create a basic Raspberry Pi cluster with minimal manual intervention.
 If you want to create a Raspberry Pi cluster manually there are plenty of sites that tell you how in much detail. This project focusses on the automation part, the choices made along the way and the lessons learned.
@@ -62,7 +62,7 @@ For the functionality either way works.
 
 In the third step we configure the found devices in the file `group_vars/all`.
 
-![Setup the base-cluster](img/setup_the_base_cluster.png)
+!["Setup the base-cluster"](img/setup_the_base_cluster.png)
 
 The following items can be configured in `group_vars/all`:
 - enable static IPv4 address (default disabled)
