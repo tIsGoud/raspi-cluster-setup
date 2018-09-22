@@ -55,7 +55,8 @@ The Mac-addresses of a Raspberry Pi all start with "b8:27:eb". With the command 
 Run the ansible playbook: `ansible-playbook create_group_vars_all_with_hardware.yml`. The found devices will be added to the file `group_vars/all`.
 Running the playbook with all devices running gives you an unordered list of devices under 'mac_address_mapping'. The 'cattle'-way.
 
-If you want to have more control over the order of the entries, turn on the devices one-by-one, run the playbook and make a note of the new entries under 'mac_address_mapping'. The 'pets'-way.
+If you want to have more control over the order of the entries, turn on the devices one-by-one, run the playbook and make a note of the new entries under 'mac_address_mapping'. The 'pet'-way.
+I have to confess I ordered the entries to match the physical stack.
 
 For the functionality either way works.
 
@@ -102,10 +103,11 @@ You can configure multiple Wi-Fi networks. For example:
 !["Dual-homed Raspi"](img/networking_dual-homed_raspi.png)
 
 ### Mobile router
-With an upgraded (OpenWRT) mobile router like the Nexx WT3020 you use the router as gateway to the outside world. Changes to Wi-Fi or fixed IP-addresses have to be configured on the router.
+With an upgraded (OpenWRT) mobile router like the [Nexx WT3020](https://openwrt.org/toh/nexx/wt3020) you use the router as gateway to the outside world. Changes to Wi-Fi or fixed IP-addresses have to be configured on the router.
 
 !["Mobile router"](img/networking_mobile_router.png)
 
 ### Laptop with internet-sharing
-Most laptops can be used for internet-sharing. The laptop serves as gateway and DHCP server. Setting fixed IP-addresses can be a challenge.
+Most laptops can be used for internet-sharing. The laptop serves as gateway and DHCP server. Setting fixed IP-addresses is a challenge. You need to modify the file '/Library/Preferences/SystemConfiguration/com.apple.nat' but I haven't found a proper "HowTo" yet.
+
 !["Laptop with internet-sharing"](img/networking_laptop_with_internet_sharing.png)
