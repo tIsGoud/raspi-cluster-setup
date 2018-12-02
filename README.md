@@ -7,6 +7,8 @@ If you want to create a Raspberry Pi cluster manually there are plenty of sites 
 
 Of course there are still manual steps but I tried to keep them to a bare minimum.
 
+UPDATE: I tried to install Kubernetes on this "hypriot"-based cluster but after many attempts I gave up on that.
+
 ## Automation
 I chose Ansible for several reasons. No server required to run, no agent required, runs from anywhere and because of my previous experiences with it. Tested with Ansible version 2.6.2.
 
